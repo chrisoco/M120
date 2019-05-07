@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXMasonryPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<JFXMasonryPane prefHeight="780.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <LineChart id="mainChart" fx:id="mainChart" animated="false" createSymbols="false" legendVisible="false" prefHeight="600.0" prefWidth="600.0">
+         <xAxis>
+            <NumberAxis label="Lateral Acceleration Fy (G)" side="BOTTOM" fx:id="xAxis" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="yAxis" label="Yaw-Moment (Nm)" side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <BarChart fx:id="balanceChart" barGap="0.0" categoryGap="140.0" legendVisible="false" prefHeight="300.0" prefWidth="250.0" title="Balance in Nm">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis autoRanging="false" lowerBound="-4000.0" minorTickCount="3" side="LEFT" tickUnit="1000.0" upperBound="4000.0" />
+         </yAxis>
+      </BarChart>
+      <BarChart fx:id="gripChart" barGap="0.0" categoryGap="140.0" legendVisible="false" prefHeight="300.0" prefWidth="250.0" title="Grip in m/s^2">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis autoRanging="false" minorTickCount="2" side="LEFT" tickUnit="10.0" upperBound="50.0" />
+         </yAxis>
+         <padding>
+            <Insets left="22.0" />
+         </padding>
+      </BarChart>
+      <BarChart fx:id="controlChart" barGap="0.0" categoryGap="140.0" legendVisible="false" prefHeight="300.0" prefWidth="250.0" title="Control in Nm/degree">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis autoRanging="false" lowerBound="-9000.0" minorTickCount="2" side="LEFT" tickUnit="1500.0" upperBound="9000.0" />
+         </yAxis>
+      </BarChart>
+      <BarChart fx:id="stabilityChart" barGap="0.0" categoryGap="140.0" legendVisible="false" prefHeight="300.0" prefWidth="250.0" title="Stability in Nm/degree">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis autoRanging="false" lowerBound="-9000.0" minorTickCount="2" side="LEFT" tickUnit="1500.0" upperBound="9000.0" />
+         </yAxis>
+      </BarChart>
+      <VBox fx:id="legend" fillWidth="false" prefHeight="150.0" prefWidth="250.0" spacing="2.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="20.0" prefWidth="350.0" text="Legend" underline="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+      </VBox>
+      <StackPane prefHeight="150.0" prefWidth="250.0">
+         <children>
+            <GridPane hgap="10.0" vgap="5.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Control" underline="true" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Stability" underline="true" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="ctrl_B" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <JFXTextField fx:id="ctrl_D" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <JFXTextField fx:id="ctrl_toD" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <JFXTextField fx:id="stab_D" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <JFXTextField fx:id="stab_B" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <JFXTextField fx:id="stab_toB" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Label text="β°:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="δ°:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Δδ°:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Δβ°:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="β°:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="δ°:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <JFXButton buttonType="RAISED" onAction="#upDateChart" prefWidth="250.0" ripplerFill="BLACK" style="-fx-background-color: lightgreen;" text="Apply" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="10.0" />
+               </padding>
+            </GridPane>
+         </children>
+      </StackPane>
+   </children>
+</JFXMasonryPane>
